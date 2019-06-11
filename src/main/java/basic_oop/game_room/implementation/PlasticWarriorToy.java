@@ -1,4 +1,4 @@
-package basic_oop.game_room.realisation;
+package basic_oop.game_room.implementation;
 
 import basic_oop.game_room.Toy;
 import basic_oop.game_room.material.PlasticToy;

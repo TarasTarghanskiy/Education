@@ -1,36 +1,34 @@
-package basic_oop.game_room.realisation;
+package basic_oop.game_room.implementation;
 
 import basic_oop.game_room.Toy;
-import basic_oop.game_room.material.IronToy;
+import basic_oop.game_room.material.PlasticToy;
 import basic_oop.game_room.type.TrainToy;
 
-public class IronTrainToy extends Toy implements TrainToy, IronToy {
+public class PlasticTrainToy extends Toy implements PlasticToy, TrainToy {
 
   private boolean onTrack;
 
-
-  public IronTrainToy(int price, String name, int weigth) {
-    super(price, name, weigth);
+  public PlasticTrainToy(int price, String name, int weight) {
+    super(price, name, weight);
   }
 
-  public void hitOnIron() {
-    System.out.println("you hit iron train");
-  }
-
-  public void play() {
-    if (onTrack) {
-      System.out.println("Iron train " + super.getName() + " move");
-    } else {
-      System.out.println("Iron train " + super.getName() + " isn't on track");
-    }
-  }
-
+  @Override
   public boolean isOnTrack() {
     return onTrack;
   }
 
+  @Override
   public void setOnTrack(boolean onTrack) {
     this.onTrack = onTrack;
+  }
+
+  @Override
+  public void play() {
+    if (onTrack) {
+      System.out.println("Plastic train " + super.getName() + " move");
+    } else {
+      System.out.println("Plastic train " + super.getName() + " isn't on track");
+    }
   }
 
   @Override
