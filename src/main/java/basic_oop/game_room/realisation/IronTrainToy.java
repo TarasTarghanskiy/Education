@@ -5,6 +5,7 @@ import basic_oop.game_room.material.IronToy;
 import basic_oop.game_room.type.TrainToy;
 
 public class IronTrainToy extends Toy implements TrainToy, IronToy {
+
   private boolean onTrack;
 
 
@@ -16,11 +17,11 @@ public class IronTrainToy extends Toy implements TrainToy, IronToy {
     System.out.println("you hit iron train");
   }
 
-  public void play(){
+  public void play() {
     if (onTrack) {
-      System.out.println("Iron train "+super.getName()+" move");
+      System.out.println("Iron train " + super.getName() + " move");
     } else {
-      System.out.println("Iron train "+super.getName()+" isn't on track");
+      System.out.println("Iron train " + super.getName() + " isn't on track");
     }
   }
 

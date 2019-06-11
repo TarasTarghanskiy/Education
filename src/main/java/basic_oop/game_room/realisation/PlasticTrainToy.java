@@ -5,6 +5,7 @@ import basic_oop.game_room.material.PlasticToy;
 import basic_oop.game_room.type.TrainToy;
 
 public class PlasticTrainToy extends Toy implements PlasticToy, TrainToy {
+
   private boolean onTrack;
 
   public PlasticTrainToy(int price, String name, int weight) {
@@ -24,7 +25,7 @@ public class PlasticTrainToy extends Toy implements PlasticToy, TrainToy {
   @Override
   public void play() {
     if (onTrack) {
-      System.out.println("Plastic train "+ super.getName() +" move");
+      System.out.println("Plastic train " + super.getName() + " move");
     } else {
       System.out.println("Plastic train " + super.getName() + " isn't on track");
     }

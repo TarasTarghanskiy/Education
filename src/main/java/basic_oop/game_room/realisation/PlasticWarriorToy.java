@@ -21,7 +21,7 @@ public class PlasticWarriorToy extends Toy implements WarriorToy, PlasticToy {
   }
 
   public void battleCry() {
-    System.out.println("I'm plastic warrior toy " + super.getName()+ " and it's my battle cry");
+    System.out.println("I'm plastic warrior toy " + super.getName() + " and it's my battle cry");
   }
 
   @Override
