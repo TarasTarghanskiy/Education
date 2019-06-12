@@ -7,11 +7,8 @@ public class Plants {
   Color color;
 
   public Plants(int size, Type type, Color color) throws TypeException, ColorException {
-    if (type == null || !Type.exist(type)) {
-      throw new TypeException("type " + type + " doesn't exist");
-    }
-    if (color == null || !Color.exist(color)) {
-      throw new ColorException("color " + color + " doesn't exist");
+    if (type == null || !Type.exist(type) || color == null || !Color.exist(color)) {
+      throw new TypeException((Type.exist(type)? "type " + type : "color " + color)  + " doesn't exist");
     }
 
     this.size = size;

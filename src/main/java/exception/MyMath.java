@@ -14,6 +14,6 @@ class MyMath implements AutoCloseable {
 
   @Override
   public void close() throws Exception {
-    System.out.println("math was closed");
+    System.out.println("math class was closed");
   }
 }
