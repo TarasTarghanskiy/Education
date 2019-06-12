@@ -16,10 +16,7 @@ public class Main {
       try {
         System.out.println(s);
         num = Integer.valueOf(br.readLine());
-        System.out.println("number " + num + " was added");
-        if (num != 0) {
-          break;
-        }
+        break;
       } catch (NumberFormatException | IOException e) {
         e.printStackTrace();
       }
