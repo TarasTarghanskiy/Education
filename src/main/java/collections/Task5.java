@@ -32,6 +32,6 @@ public class Task5 {
     testObjects.sort(Comparator.comparingInt(o -> (Integer.valueOf(o.getSecondString().split("#")[1]))));
     System.out.println(testObjects);
 
-    
+
   }
 }

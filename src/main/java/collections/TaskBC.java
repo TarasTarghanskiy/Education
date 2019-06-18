@@ -7,6 +7,8 @@ import java.util.List;
 public class TaskBC {
   // робота з масивами
   public void start(){
+    System.out.println("Task B C :");
+
     List<Integer> integerQueue = new ArrayList<>();
     for (int i = 0; i < 100; i++) {
       integerQueue.add((int)(Math.random()*10)+1);

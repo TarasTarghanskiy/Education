@@ -24,4 +24,12 @@ public class TestObject {
   public void setSecondString(String secondString) {
     this.secondString = secondString;
   }
+
+  @Override
+  public String toString() {
+    return "\nTestObject{" +
+        "firstString='" + firstString + '\'' +
+        ", secondString='" + secondString + '\'' +
+        '}';
+  }
 }

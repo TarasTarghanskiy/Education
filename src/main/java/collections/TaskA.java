@@ -9,6 +9,7 @@ public class TaskA {
   а) присутні в обох масивах;
   б) присутні тільки в одному з масивів. */
   public void start(){
+    System.out.println("Task A: ");
     Queue<String> stringQueue1 = new ArrayDeque<>();
     Queue<String> stringQueue2 = new ArrayDeque<>();
     for (int i = 0; i < 10; i++) {

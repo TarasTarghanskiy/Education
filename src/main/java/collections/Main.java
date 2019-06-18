@@ -10,8 +10,9 @@ public class Main {
 
   public static void main(String[] args) {
     new TaskBC().start();
-    new TaskA().start(); //додаткове завдання
+    new TaskA().start();
     new Task4().start();
+    new Task5().start();
   }
 
 }
