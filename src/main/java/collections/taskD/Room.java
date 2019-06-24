@@ -12,13 +12,14 @@ public class Room {
 
   public Room() {
     this.doorList = new LinkedList<>();
-    createRandomDoors();
   }
 
   public void createRandomDoors() {
     for (int i = 0; i < 10; i++) {
-      boolean isEnemy = (Math.random() * 100) > 30 ? Boolean.TRUE : Boolean.FALSE;
-      int power = isEnemy ? ((int) (Math.random() * 70) + 10) : ((int) (Math.random() * 95) + 5);
+      boolean isEnemy = (Math.random() * 100) > 30;
+      int power;
+      if (isEnemy) power = (int) ((Math.random() * 70) + 10);
+      else power = (int) ((Math.random() * 95) + 5);
       doorList.add(new Door(isEnemy, power));
     }
   }
