@@ -16,20 +16,20 @@ demonstrate that sorting works properly. Also perform a binary search using
 your Comparator. */
 
 public class Task5 {
+
   List<TestObject> testObjects = new ArrayList<>();
 
-  public void start(){
+  public void start() {
     System.out.println("Task 5 :");
 
     for (int i = 0; i < 10; i++) {
-      testObjects.add(new TestObject("firstString#" + (int)(Math.random()*10), "secondString#" + (100-i) ));
+      testObjects.add(
+          new TestObject("firstString#" + (int) (Math.random() * 10), "secondString#" + (100 - i)));
     }
-    //only cares about the first String
-    testObjects.sort(Comparator.comparingInt(o -> (Integer.valueOf(o.getFirstString().split("#")[1]))));
-    System.out.println(testObjects);
 
     //only cares about the second String
-    testObjects.sort(Comparator.comparingInt(o -> (Integer.valueOf(o.getSecondString().split("#")[1]))));
+    testObjects
+        .sort(Comparator.comparingInt(o -> (Integer.valueOf(o.getSecondString().split("#")[1]))));
     System.out.println(testObjects);
   }
 }

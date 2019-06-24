@@ -1,5 +1,7 @@
 package collections;
 
+import java.util.Arrays;
+
 public class StringContainer {
 
   private String[] strings;
@@ -24,9 +26,11 @@ public class StringContainer {
     if (maxSize == realSize) {
       maxSize = maxSize * 2;
       String[] newStrings = new String[maxSize];
-      for (int i = 0; i < strings.length; i++) {
-        newStrings[i] = strings[i];
-      }
+      newStrings = strings.clone();
+      System.arraycopy(newStrings, 0, strings, 0, strings.length);
+//      for (int i = 0; i < strings.length; i++) {
+//        newStrings[i] = strings[i];
+//      }
       strings = newStrings;
     }
     strings[realSize] = s;

@@ -1,6 +1,9 @@
 package collections;
 
-public class TestObject {
+import java.util.Comparator;
+
+public class TestObject implements Comparable<TestObject> {
+
   private String firstString;
   private String secondString;
 
@@ -31,5 +34,10 @@ public class TestObject {
         "firstString='" + firstString + '\'' +
         ", secondString='" + secondString + '\'' +
         '}';
+  }
+
+  @Override
+  public int compareTo(TestObject o) {
+    return Integer.valueOf(firstString) - Integer.valueOf(o.firstString);
   }
 }

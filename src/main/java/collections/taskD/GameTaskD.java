@@ -18,6 +18,7 @@ public class GameTaskD {
 
   public void start() {
     Room room = new Room(); //1
+    room.createRandomDoors();
     System.out.println(room); //2
     System.out.println("count of emergency doors: " + doorsObserve(room.getDoorList())); //3
     play(room.getDoorList()); //4
