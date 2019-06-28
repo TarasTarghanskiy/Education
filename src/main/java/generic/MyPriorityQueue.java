@@ -83,21 +83,25 @@ public class MyPriorityQueue<T extends Droid> {
       return;
     }
     if (size > 1) {
-      for (int i = size - 1; i >= 0; i--) {
-        if (droids[i].compareTo(droids[i + 1]) < 0) {
-          Droid d = droids[i];
-          droids[i] = droids[i + 1];
-          droids[i + 1] = d;
-        } else {
-          break;
-        }
-      }
+      sortWithComparable();
     }
   }
 
   private void sortWithComparator() {
     for (int i = size - 1; i >= 0; i--) {
       if (comparator.compare((droids[i]), (droids[i + 1])) < 0) {
+        Droid d = droids[i];
+        droids[i] = droids[i + 1];
+        droids[i + 1] = d;
+      } else {
+        break;
+      }
+    }
+  }
+
+  private void sortWithComparable(){
+    for (int i = size - 1; i >= 0; i--) {
+      if (droids[i].compareTo(droids[i + 1]) < 0) {
         Droid d = droids[i];
         droids[i] = droids[i + 1];
         droids[i + 1] = d;
