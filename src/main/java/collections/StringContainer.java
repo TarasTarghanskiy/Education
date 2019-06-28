@@ -14,6 +14,7 @@ public class StringContainer {
   }
 
   public StringContainer(int size) {
+    if (size < 1) size = 10;
     this.strings = new String[size];
     this.maxSize = size;
   }
