@@ -16,12 +16,22 @@ public class Room {
 
   public void createRandomDoors() {
     for (int i = 0; i < 10; i++) {
-      boolean isEnemy = (Math.random() * 100) > 30;
-      int power;
-      if (isEnemy) power = (int) ((Math.random() * 70) + 10);
-      else power = (int) ((Math.random() * 95) + 5);
-      doorList.add(new Door(isEnemy, power));
+      if ((Math.random() * 100) > 30) {
+        createEnemyDoor();
+      } else {
+        createAllyDoor();
+      }
     }
+  }
+
+  private void createEnemyDoor() {
+    int power = (int) ((Math.random() * 70) + 10);
+    doorList.add(new Door(true, power));
+  }
+
+  private void createAllyDoor() {
+    int power = (int) ((Math.random() * 95) + 5);
+    doorList.add(new Door(false, power));
   }
 
   public List<Door> getDoorList() {
