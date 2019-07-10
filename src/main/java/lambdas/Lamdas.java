@@ -99,9 +99,14 @@ public class Lamdas {
         .forEach((key, value) -> System.out.println(key + " -> " + value.stream().count()));
 
     /*Occurrence number of each symbol except upper case characters*/
-    String.join("",stringList).chars().boxed()
+    String.join("", stringList).chars().boxed()
         .collect(Collectors.groupingBy(Function.identity()))
-        .forEach((key, value) -> System.out.println(Character.getName(key) + " -> " + value.size()));
+        .forEach(
+            (key, value) -> System.out.println(Character.getName(key) + " -> " + value.size()));
+    //second way
+    Stream.of(stringList.stream().collect(Collectors.joining()).split(""))
+        .collect(Collectors.groupingBy(String::toString))
+        .values().forEach(e -> System.out.println(e.get(0) + " -> " + e.size()));
   }
 
   private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
