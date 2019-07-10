@@ -1,13 +1,20 @@
 package lambdas;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
+import java.util.function.Function;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -56,12 +63,13 @@ public class Lamdas {
 
     /*Count average, min, max, sum of list values. Try to count
     sum using both reduce and sum Stream methods*/
-    Integer[] i = new Integer[]{1,2,3,4,5,6,7,8,9,10};
+    Integer[] i = new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     System.out.println(Stream.of(i).min(Integer::compareTo).get());
     System.out.println(Stream.of(i).max(Integer::compareTo).get());
     System.out.println(Stream.of(i).mapToInt(Integer::intValue).average().getAsDouble());
+    System.out.println(Stream.of(i).reduce((e1, e2) -> e1 + e2).get());
     System.out.println(Stream.of(i).mapToInt(Integer::intValue).sum());
-    double average = (double)Stream.of(i).reduce((e1, e2) -> e1 + e2).get()/Stream.of(i).count();
+    double average = (double) Stream.of(i).reduce((e1, e2) -> e1 + e2).get() / Stream.of(i).count();
     System.out.println("average = " + average);
     /*Count number of values that are bigger than average*/
     System.out.println("bigger than average = " + Stream.of(i).filter(e -> e > average).count());
@@ -69,45 +77,78 @@ public class Lamdas {
     /*4 Create application. User enters some number of text lines (stop
     reading text when user enters empty line). Application returns:
 
-    Number of unique words
+    */
+    List<String> stringList = new ArrayList<>();
+    while (true) {
+      String s = input("enter string");
+      if (s.isEmpty()) {
+        break;
+      }
+      stringList.addAll(Arrays.asList(s.split(" ")));
+    }
 
-    Sorted list of all unique words
+    /* Number of unique words */
+    System.out.println("unique only = " + stringList.stream().distinct().count());
+    //Sorted list of all unique words
+    System.out.println("sorted unique = " +
+        stringList.stream().distinct().sorted().collect(Collectors.toList()));
+    //Word count. Occurrence number of each word in the text
+    System.out.println("world count = " + stringList.stream().count());
+    //(e.g. text “a s a” -> a-2 s-1 ). Use grouping collector.
+    stringList.stream().collect(Collectors.groupingBy(String::toString))
+        .forEach((key, value) -> System.out.println(key + " -> " + value.stream().count()));
 
-    Word count. Occurrence number of each word in the text
-    (e.g. text “a s a” -> a-2 s-1 ). Use grouping collector.
+    /*Occurrence number of each symbol except upper case characters*/
+    String.join("",stringList).chars().boxed()
+        .collect(Collectors.groupingBy(Function.identity()))
+        .forEach((key, value) -> System.out.println(Character.getName(key) + " -> " + value.size()));
+  }
 
-        Occurrence number of each symbol except upper case
-        characters*/
+  private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+  private static java.lang.String input(java.lang.String s) {
+    System.out.print(s + ": ");
+    try {
+      s = br.readLine();
+    } catch (IOException e) {
+      e.printStackTrace();
+      input(s);
+    }
+    return s;
   }
 
   static List<Integer> firstRand() {
     return new Random().ints(30, 1, 10)
         .boxed().collect(Collectors.toList());
   }
+
   static List<Integer> secondRand() {
     return Stream.generate(() -> (int) (Math.random() * 10)).limit(30).collect(Collectors.toList());
   }
+
   static List<Integer> thirdRand() {
-    return Stream.iterate((int) System.nanoTime(), n -> n + 5).limit(30).collect(Collectors.toList());
+    return Stream.iterate((int) System.nanoTime(), n -> n + 5).limit(30)
+        .collect(Collectors.toList());
   }
 
-  static List<Integer> firstNotRand(){
-    return Stream.of(new Integer[]{1,2,3,4,5,6}).collect(Collectors.toList());
+  static List<Integer> firstNotRand() {
+    return Stream.of(new Integer[]{1, 2, 3, 4, 5, 6}).collect(Collectors.toList());
   }
 
-  static List<Integer> secondNotRand(){
-    return Arrays.stream(new int[]{1,2,3,4,5,6}).boxed().collect(Collectors.toList());
+  static List<Integer> secondNotRand() {
+    return Arrays.stream(new int[]{1, 2, 3, 4, 5, 6}).boxed().collect(Collectors.toList());
   }
 
   static List<Integer> thirdNotRand(Path path) throws IOException {
     return Files.lines(path).map(Integer.class::cast).collect(Collectors.toList());
   }
 
-  static List<Integer> fourthNotRand(){
+  static List<Integer> fourthNotRand() {
     return "76354693796347968".chars().boxed().collect(Collectors.toList());
   }
 
-  static List<Integer> fifthNotRand(){
-    return Stream.builder().add(1).add(2).add(3).build().map(Integer.class::cast).collect(Collectors.toList());
+  static List<Integer> fifthNotRand() {
+    return Stream.builder().add(1).add(2).add(3).build().map(Integer.class::cast)
+        .collect(Collectors.toList());
   }
 }
