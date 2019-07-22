@@ -42,11 +42,13 @@ public class Menu {
   private Menu() {
   }
 
-  public static void call(){
+  public static void call() {
     while (true) {
       map.forEach((integer, elem) -> System.out.println(elem));
       int i = inputInteger("choose number");
-      if (i == 0) break;
+      if (i == 0) {
+        break;
+      }
       map.get(i).use();
     }
   }
